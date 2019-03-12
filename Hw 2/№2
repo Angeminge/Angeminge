@@ -2,16 +2,7 @@ import os
 import zipfile
 import bz2
 import json
-
-
-def strip_punctuation(word):
-    puncList = [".",";",":","!","?","/","\\",",","#","@","$","&",")","(","\"", "[", "]", "{", "}", "<", ">", "=", "^",
-                "%", "*", "+"]
-    '!"#$%&()*+,./:;<=>?@[\]^{|}~'
-    for punc in puncList:
-        word = word.replace(punc,'')
-        return word
-
+import string
 
 cur_folder = os.getcwd()
 files = os.listdir(cur_folder)
@@ -43,8 +34,7 @@ for i in os.listdir(cur_folder+"\\JsonFolder"):
         if (body == "[deleted]"):
             continue
         for word in body.split():
-            word = word.lower().rstrip()
-            word = strip_punctuation(word)
+            word = word.translate(str.maketrans('', '', string.punctuation))
             if (len(word) < 3):
                 continue
             if (most_used_woeds.get(word, 0)):
@@ -55,5 +45,6 @@ for i in os.listdir(cur_folder+"\\JsonFolder"):
 most_used_woeds = sorted(most_used_woeds.items(), key=lambda x: (x[1], x[0]), reverse=True)
 number = 20
 for i in range(number):
-    print(str(i+1)+". " + str(most_used_woeds[i][0]), "-", most_used_woeds[i][1])
-    
+    print(str(i+1)+". " + str(most_used_woeds[i][0]))
+
+
