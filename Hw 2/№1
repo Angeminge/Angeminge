@@ -1,0 +1,48 @@
+  
+chiselco = int(input())
+spisok1 = [' ']
+spisok2 = [' ']
+
+def add(a,b):
+    flag = 0
+    for i in range(len(spisok1)):
+        if (spisok1[i] == a and spisok2[i] == b) or (spisok1[i] == b and spisok2[i] == a):
+            flag = 1
+    if flag == 0:
+        spisok1.append(a)
+        spisok1.append(b)
+        spisok2.append(b)
+        spisok2.append(a)
+
+
+def count(a):
+    kolichestvo  = 0
+    for i in spisok1:
+        if i==a:
+            kolichestvo+=1
+    return kolichestvo
+
+
+def check(a,b):
+    kostblLb = 0
+    for i in range(len(spisok1)):
+        if spisok1[i] == a and spisok2[i] == b:
+            kostblLb+=1
+    if kostblLb>0:
+        return 'Yes'
+    else:
+        return 'No'
+
+
+for i in range(chiselco):
+    deistvie = input().lower().split()
+    if deistvie[0]=='add':
+        add(deistvie[1], deistvie[2])
+
+
+    elif deistvie[0]=='count':
+        print(count(deistvie[1]))
+
+    elif deistvie[0]=='check':
+        print(check(deistvie[1], deistvie[2]))
+        
