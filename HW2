@@ -1,0 +1,41 @@
+NUMBER = int(input())
+LIST1 = [' ']
+LIST2 = [' ']
+
+def add(word1, word2):# данная функция добавляет синонимыы в списки 
+    flag = 0
+    for i in range(len(LIST1)):
+        if (LIST1[i] == word1 and LIST2[i] == word2) or (LIST1[i] == word2 and LIST2[i] == word1):
+            flag = 1
+    if flag == 0:
+        LIST1.append(word1)
+        LIST1.append(word2)
+        LIST2.append(word2)
+        LIST2.append(word1)
+
+def count(word):# Данная функция считает количество синонимов
+    quantity = 0
+    for i in LIST1:
+        if i == word:
+            quantity += 1
+    return quantity
+
+def check(word1, word2):# данная функция проверяет являются ли 2-а слова синонимами
+    helper = 0
+    ansv = ['No', 'Yes']
+    for i in range(len(LIST1)):
+        if LIST1[i] == word1 and LIST2[i] == word2:
+            helper = 1
+    return ansv[helper]
+
+for j in range(NUMBER):
+    record = input().lower().split()
+    if record[0] == 'add':
+        add(record[1], record[2])
+
+    elif record[0] == 'count':
+        print(count(record[1]))
+    elif record[0] == 'check':
+        print(check(record[1], record[2]))
+    else:
+        continue
