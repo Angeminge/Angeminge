@@ -36,7 +36,7 @@ for i in os.listdir(CUR_FOLDER+"\\JsonFolder"):
             word = word.translate(str.maketrans('', '', string.punctuation))
             if len(word) < 3:
                 continue
-            if (MOST_USED_WOEDS.get(word, 0)):
+            if MOST_USED_WOEDS.get(word, 0):
                 MOST_USED_WOEDS[word] += 1
             else:
                 MOST_USED_WOEDS[word] = 1
